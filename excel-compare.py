@@ -1,4 +1,6 @@
 import openpyxl
+import tkinter as tk
+from tkinter import filedialog
 
 def compare_workbooks(file1, file2, output_file):
     wb1 = openpyxl.load_workbook(file1)
@@ -27,8 +29,17 @@ def compare_workbooks(file1, file2, output_file):
     print(f"Comparison report saved as {output_file}")
 
 if __name__ == "__main__":
-    file1 = "2023 04 April Commission Reports LT.xlsx"
-    file2 = "2023 04 April Commission Reports RC.xlsx"
-    output_file = "comparison_report.csv"
+    root = tk.Tk()
+    root.withdraw()  # Hide the main tkinter window
 
-    compare_workbooks(file1, file2, output_file)
+    print("Select the first Excel file to compare:")
+    file1 = filedialog.askopenfilename(filetypes=[("Excel files", "*.xlsx")])
+
+    print("Select the second Excel file to compare:")
+    file2 = filedialog.askopenfilename(filetypes=[("Excel files", "*.xlsx")])
+
+    if file1 and file2:
+        output_file = "comparison_report.csv"
+        compare_workbooks(file1, file2, output_file)
+    else:
+        print("Files not selected. Exiting.")
