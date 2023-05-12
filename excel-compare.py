@@ -20,6 +20,7 @@ def compare_workbooks(file1, file2, output_file):
 
                     if cell1.value != cell2.value:
                         discrepancies.append((sheet_name, row, col, cell1.value, cell2.value))
+                        discrepancies.append((sheet_name, row, col, cell1.value, cell2.value))
 
     with open(output_file, 'w') as f:
         f.write("Sheet, Row, Column, Value in File1, Value in File2\n")
